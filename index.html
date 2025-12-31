@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our 2026 Journey | My Love</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --pink: #ff4d6d; --dark: #0b0b0b; }
+        body, html { margin: 0; padding: 0; background-color: var(--dark); color: white; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* Waiting Screen */
+        #waiting-room {
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: radial-gradient(circle, #2c0211 0%, #000000 100%); text-align: center; position: fixed; width: 100%; z-index: 2000;
+        }
+        .timer-box { font-size: clamp(3.5rem, 12vw, 6rem); color: var(--pink); text-shadow: 0 0 30px var(--pink); margin: 20px 0; font-weight: bold; font-variant-numeric: tabular-nums; }
+
+        /* Main Content */
+        #main-content { display: none; opacity: 0; transition: opacity 2s ease; }
+
+        .hero {
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('1.jpg') center/cover no-repeat;
+            text-align: center; position: relative;
+        }
+        .hero h1 { font-family: 'Dancing Script', cursive; font-size: clamp(3rem, 10vw, 7rem); margin: 0; color: white; }
+
+        /* 9 Photo Grid Section */
+        .gallery-container { padding: 100px 20px; max-width: 1200px; margin: 0 auto; background: #000; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px; padding: 20px;
+        }
+        
+        .photo-card {
+            background: white; padding: 12px 12px 45px 12px; border-radius: 4px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: rotate(calc(var(--r) * 1deg));
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        
+        .photo-card:hover { 
+            transform: scale(1.1) rotate(0deg); 
+            z-index: 10; 
+            box-shadow: 0 20px 50px rgba(255,77,109,0.6); 
+        }
+
+        .photo-card img { width: 100%; height: 380px; object-fit: cover; border-radius: 2px; }
+        
+        .photo-card p { 
+            color: #222; font-family: 'Dancing Script', cursive; 
+            font-size: 1.6rem; margin: 15px 0 0 0; text-align: center; 
+        }
+
+        .love-letter {
+            max-width: 800px; margin: 80px auto; padding: 60px;
+            background: rgba(255, 255, 255, 0.03); border-radius: 30px;
+            border: 1px solid rgba(255,77,109,0.3); backdrop-filter: blur(15px);
+            text-align: center; line-height: 1.8;
+        }
+
+        .music-btn {
+            position: fixed; bottom: 30px; right: 30px; z-index: 3000;
+            background: var(--pink); border: none; color: white; width: 60px; height: 60px;
+            border-radius: 50%; cursor: pointer; font-size: 25px; box-shadow: 0 0 20px var(--pink);
+            display: flex; align-items: center; justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="music-btn" id="mBtn" onclick="toggleMusic()">🎵</button>
+    <audio id="bgMusic" loop src="./audio.mp3"></audio>
+
+    <div id="waiting-room">
+        <h2 style="font-weight: 300; letter-spacing: 5px; text-transform: uppercase;">The Best Year is Loading</h2>
+        <div class="timer-box" id="timer">00:00:00</div>
+        <p style="opacity: 0.6; font-size: 1.2rem;">Get ready for a big surprise, Jaan!</p>
+    </div>
+
+    <div id="main-content">
+        <div class="hero">
+            <h1>Happy New Year ❤️</h1>
+            <p style="font-size: 1.5rem; letter-spacing: 2px; margin-top: 10px;">To My Forever Person</p>
+        </div>
+
+        <div class="gallery-container">
+            <h2 style="text-align: center; font-family: 'Dancing Script'; font-size: 3.5rem; color: var(--pink); margin-bottom: 60px;">9 Reasons Why You Are My World</h2>
+            
+            <div class="grid">
+                <div class="photo-card" style="--r: -3"><img src="1.jpg" alt="1"><p>Where it all began</p></div>
+                <div class="photo-card" style="--r: -1"><img src="2.jpg" alt="3"><p>Same same </p></div>
+                <div class="photo-card" style="--r: -1"><img src="3.png" alt="3"><p>My favorite picture</p></div>
+                <div class="photo-card" style="--r: 3"><img src="4.png" alt="4"><p>Midnight memories</p></div>
+                <div class="photo-card" style="--r: -2"><img src="5.png" alt="5"><p>The way you look at me</p></div>
+                <div class="photo-card" style="--r: 1"><img src="6.jpg" alt="6"><p>Pure happiness</p></div>
+                <div class="photo-card" style="--r: -3"><img src="7.jpg" alt="7"><p>Our cute adventures</p></div>
+                <div class="photo-card" style="--r: 2"><img src="8.jpg" alt="8"><p>My safe place</p></div>
+                <div class="photo-card" style="--r: -1"><img src="9.jpg" alt="9"><p>To many more years!</p></div>
+            </div>
+
+            <div class="love-letter">
+                <h2 style="font-family: 'Dancing Script'; font-size: 3rem; color: var(--pink);">Hye Jaan,</h2>
+                <p style="font-size: 1.3rem;">2025 mein bohot saari memories bani, lekin 2026 mere liye isliye khaas hai kyunki is saal bhi tum mere saath ho. In 9 photos mein humari dosti, pyaar aur wo saari pagalpanti hai jo humne saath ki. <br><br> Main hamesha tumhara saath dunga, chahe kuch bhi ho jaye. Let's make this year unforgettable!</p>
+                <p style="font-family: 'Dancing Script'; font-size: 2rem; margin-top: 30px;">I Love You Forever! ❤️</p>
+            </div>
+        </div>
+
+        <footer style="text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem;">
+            Made for you with all my heart.
+        </footer>
+    </div>
+
+    <script>
+        // Set your target date: January 1st, 2026
+        const targetDate = new Date("Jan 1, 2026 00:00:00").getTime();
+
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = 
+                (h < 10 ? "0" + h : h) + ":" + 
+                (m < 10 ? "0" + m : m) + ":" + 
+                (s < 10 ? "0" + s : s);
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                triggerReveal();
+            }
+        }, 1000);
+
+        function triggerReveal() {
+            document.getElementById("waiting-room").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("waiting-room").style.display = "none";
+                const main = document.getElementById("main-content");
+                main.style.display = "block";
+                setTimeout(() => { main.style.opacity = "1"; }, 100);
+                
+                // Big Firework Burst
+                const duration = 15 * 1000;
+                const end = Date.now() + duration;
+
+                (function frame() {
+                    confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff4d6d', '#ffffff'] });
+                    confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff4d6d', '#ffffff'] });
+                    if (Date.now() < end) { requestAnimationFrame(frame); }
+                }());
+            }, 1000);
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById("bgMusic");
+            const btn = document.getElementById("mBtn");
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = "⏸️";
+            } else {
+                music.pause();
+                btn.innerHTML = "🎵";
+            }
+        }
+
+        // --- TESTING ---
+        // triggerReveal(); // Ye line remove kar dena final bhejte waqt. Abhi test karne ke liye un-comment kar sakte ho.
+    </script>
+</body>
+</html>
